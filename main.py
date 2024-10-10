@@ -21,7 +21,7 @@ def main():
     tasks = []
     while True:
         print_default_message()
-        user_input = input("Enter your choice: ")
+        user_input = int(input("Enter your choice: "))
         if user_input == 1:
             tasks = add_task()  
         elif user_input == 2:
@@ -29,6 +29,7 @@ def main():
         elif user_input == 3:
             view_tasks()
         elif user_input == 4:
+            print("Exiting the application. Goodbye!")
             break
 
 
