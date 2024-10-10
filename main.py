@@ -6,8 +6,11 @@ def print_default_message():
     print("4. Exit")
 
 
-def add_task():
-    print("aaa")
+def add_task(tasks):
+    new_task = input("Enter your task:")
+    tasks.append(new_task)
+    print(f"'{new_task}' has been added to the list.")
+    return tasks
 
 def remove_task():
     print("bbb")
@@ -25,7 +28,7 @@ def main():
         print_default_message()
         user_input = int(input("Enter your choice: "))
         if user_input == 1:
-            tasks = add_task()  
+            tasks = add_task(tasks)
         elif user_input == 2:
             tasks = remove_task()
         elif user_input == 3:
