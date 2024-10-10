@@ -12,8 +12,15 @@ def add_task(tasks):
     print(f"'{new_task}' has been added to the list.")
     return tasks
 
-def remove_task():
-    print("bbb")
+def remove_task(tasks):
+    task_to_remove = input("Enter the task to remove:")
+    if task_to_remove in tasks:
+        tasks.remove(task_to_remove)
+        print(task_to_remove, "has been removed from the list")
+        return tasks
+    else:
+        print("There no", task_to_remove, "task")
+        return tasks
 
 
 def view_tasks(tasks):
@@ -30,7 +37,7 @@ def main():
         if user_input == 1:
             tasks = add_task(tasks)
         elif user_input == 2:
-            tasks = remove_task()
+            tasks = remove_task(tasks)
         elif user_input == 3:
             view_tasks(tasks)
         elif user_input == 4:
