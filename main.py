@@ -13,21 +13,23 @@ def remove_task():
     print("bbb")
 
 
-def view_tasks():
-    print("ccc")
+def view_tasks(tasks):
+    print("To-Do List:")
+    for index, task in enumerate(tasks):
+        print(f"{index + 1}.{task}")
 
 
 def main():
     tasks = []
     while True:
         print_default_message()
-        user_input = input("Enter your choice: ")
+        user_input = int(input("Enter your choice: "))
         if user_input == 1:
             tasks = add_task()  
         elif user_input == 2:
             tasks = remove_task()
         elif user_input == 3:
-            view_tasks()
+            view_tasks(tasks)
         elif user_input == 4:
             break
 
