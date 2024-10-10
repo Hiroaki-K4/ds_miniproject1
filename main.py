@@ -30,7 +30,11 @@ def main():
     tasks = []
     while True:
         print_default_message()
-        user_input = int(input("Enter your choice: "))
+        try:
+            user_input = int(input("Enter your choice: "))
+        except:
+            print("Please enter a number between 1-4")
+            continue
         if user_input == 1:
             tasks = add_task()
         elif user_input == 2:
@@ -40,6 +44,8 @@ def main():
         elif user_input == 4:
             print("Exiting the application. Goodbye!")
             break
+        else:
+            print("Please enter a number between 1-4")
 
 
 if __name__ == '__main__':
