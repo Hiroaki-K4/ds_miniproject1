@@ -18,13 +18,14 @@ def view_tasks():
 
 
 def main():
+    tasks = []
     while True:
         print_default_message()
         user_input = input("Enter your choice: ")
         if user_input == 1:
-            add_task()
+            tasks = add_task()  
         elif user_input == 2:
-            remove_task()
+            tasks = remove_task()
         elif user_input == 3:
             view_tasks()
         elif user_input == 4:
