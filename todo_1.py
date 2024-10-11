@@ -37,6 +37,7 @@ def main():
             user_input = int(input("Enter your choice: "))
         except:
             print("Please enter a number between 1-4")
+            print()
             continue
         if user_input == 1:
             tasks = add_task(tasks)
@@ -49,7 +50,7 @@ def main():
             break
         else:
             print("Please enter a number between 1-4")
-
+        print()
 
 if __name__ == '__main__':
     main()
