@@ -27,7 +27,11 @@ def remove_task(tasks):
 def view_tasks(tasks):
     print("To-Do List:")
     for index, task in enumerate(tasks):
-        print(f"{index + 1}.{task}")
+        print(
+            "{0}. {1} - {2} - {3}".format(
+                index + 1, task["Name"], task["Priority"], task["Deadline"]
+            )
+        )
 
 
 def suggest_tasks(tasks):
