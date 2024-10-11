@@ -38,8 +38,7 @@ def suggest_tasks(tasks):
 
 
 def main():
-    tasks = [[{"Name": "Buy groceries", "Priority": "high", "Deadline": "2024-06-15"},
-            {"Name": "Finish homework", "Priority": "medium", "Deadline": "2024-06-17"}]]
+    tasks = []
     while True:
         print_default_message()
         try:
