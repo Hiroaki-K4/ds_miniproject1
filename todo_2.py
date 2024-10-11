@@ -1,3 +1,4 @@
+import re
 def print_default_message():
     print("Advanced To-Do List Application")
     print("1. Add Task")
@@ -8,9 +9,31 @@ def print_default_message():
 
 
 def add_task(tasks):
-    new_task = input("Enter your task:")
-    tasks.append(new_task)
-    print(f"'{new_task}' has been added to the list.")
+    Name = input("Enter your task:")
+    while True:
+        Priority = input("Enter the priority (high, medium, low):")
+        list = ["high", "medium", "low"]
+        if Priority.lower() in list :
+            break
+        else :
+            print("Please enter high, medium or low!")
+            continue
+
+    while True:
+        Deadline = input("Enter the deadline (YYYY-MM-DD):")
+        pattern_Deadline = r'^\d{4}-\d{2}-\d{2}$'
+        if re.match(pattern_Deadline, Deadline):
+            break
+        else:
+            print("Please enter the right formate YYYY-MM-DD!")
+            continue
+
+    tasks_dic ={}
+    tasks_dic["Name"] = Name
+    tasks_dic["Priority"] = Priority
+    tasks_dic["Deadline"] = Deadline
+    tasks.append(tasks_dic)
+    print(f"'{Name}' with priority {Priority} and deadline {Deadline} has been added to the list.")
     return tasks
 
 def remove_task(tasks):
