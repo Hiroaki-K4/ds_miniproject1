@@ -13,15 +13,17 @@ def add_task(tasks):
     print(f"'{new_task}' has been added to the list.")
     return tasks
 
+
 def remove_task(tasks):
     task_to_remove = input("Enter the task to remove:")
-    if task_to_remove in tasks:
-        tasks.remove(task_to_remove)
-        print(task_to_remove, "has been removed from the list")
-        return tasks
-    else:
-        print("There no", task_to_remove, "task")
-        return tasks
+    for task in tasks:
+        if tasks["Name"] == task_to_remove:
+            tasks.remove(task)
+            print(task_to_remove, "has been removed from the priority list")
+            return tasks
+        else:
+            print("There no", task_to_remove, "task")
+            return tasks
 
 
 def view_tasks(tasks):
