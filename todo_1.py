@@ -12,6 +12,7 @@ def add_task(tasks):
     print(f"'{new_task}' has been added to the list.")
     return tasks
 
+
 def remove_task(tasks):
     task_to_remove = input("Enter the task to remove:")
     if task_to_remove in tasks:
@@ -36,6 +37,7 @@ def main():
         try:
             user_input = int(input("Enter your choice: "))
         except:
+            # Input error handling
             print("Please enter a number between 1-4")
             print()
             continue
@@ -52,5 +54,6 @@ def main():
             print("Please enter a number between 1-4")
         print()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

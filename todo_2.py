@@ -1,4 +1,6 @@
 import re
+
+
 def print_default_message():
     print("Advanced To-Do List Application")
     print("1. Add Task")
@@ -13,27 +15,29 @@ def add_task(tasks):
     while True:
         Priority = input("Enter the priority (high, medium, low):")
         list = ["high", "medium", "low"]
-        if Priority.lower() in list :
+        if Priority.lower() in list:
             break
-        else :
+        else:
             print("Please enter high, medium or low!")
             continue
 
     while True:
         Deadline = input("Enter the deadline (YYYY-MM-DD):")
-        pattern_Deadline = r'^\d{4}-\d{2}-\d{2}$'
+        pattern_Deadline = r"^\d{4}-\d{2}-\d{2}$"
         if re.match(pattern_Deadline, Deadline):
             break
         else:
             print("Please enter the right formate YYYY-MM-DD!")
             continue
 
-    tasks_dic ={}
+    tasks_dic = {}
     tasks_dic["Name"] = Name
     tasks_dic["Priority"] = Priority
     tasks_dic["Deadline"] = Deadline
     tasks.append(tasks_dic)
-    print(f"'{Name}' with priority {Priority} and deadline {Deadline} has been added to the list.")
+    print(
+        f"'{Name}' with priority {Priority} and deadline {Deadline} has been added to the list."
+    )
     return tasks
 
 
@@ -71,6 +75,7 @@ def main():
         try:
             user_input = int(input("Enter your choice: "))
         except:
+            # Input error handling
             print("Please enter a number between 1-4")
             print()
             continue
@@ -90,5 +95,5 @@ def main():
         print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
