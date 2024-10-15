@@ -25,7 +25,7 @@ def add_task(tasks):
             datetime.date.fromisoformat(Deadline)
             break
         except ValueError:
-            print("Please enter the right formate YYYY-MM-DD!")
+            print("Please enter the right format YYYY-MM-DD!")
             continue
     tasks_dic ={}
     tasks_dic["Name"] = Name
