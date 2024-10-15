@@ -1,4 +1,5 @@
 import re
+import datetime
 def print_default_message():
     print("Advanced To-Do List Application")
     print("1. Add Task")
@@ -18,16 +19,14 @@ def add_task(tasks):
         else :
             print("Please enter high, medium or low!")
             continue
-
     while True:
         Deadline = input("Enter the deadline (YYYY-MM-DD):")
-        pattern_Deadline = r'^\d{4}-\d{2}-\d{2}$'
-        if re.match(pattern_Deadline, Deadline):
+        try:
+            datetime.date.fromisoformat(Deadline)
             break
-        else:
+        except ValueError:
             print("Please enter the right formate YYYY-MM-DD!")
             continue
-
     tasks_dic ={}
     tasks_dic["Name"] = Name
     tasks_dic["Priority"] = Priority
