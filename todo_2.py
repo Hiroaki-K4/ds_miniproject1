@@ -62,19 +62,40 @@ def view_tasks(tasks):
         )
 
 import datetime as dt
-def suggest_tasks(tasks):
-    current_day = dt.datetime.now().date()
-    tasks_with_days_remaining = []
-    for task in tasks:
-        deadline_date = dt.datetime.strptime(task["Deadline"], "%Y-%m-%d").date()
-        days_remaining = (deadline_date - current_day).days
-        tasks_with_days_remaining.append((task, days_remaining))
 
-    priority_order = {"high": 0, "medium": 1, "low": 2} 
-    sorted_tasks = sorted(tasks_with_days_remaining, key=lambda x: (x[1], priority_order[x[0]["Priority"]]))
-    print("Good Afternoon1 Here are some tasks you might want to work on:")
-    for task, days_remaining in sorted_tasks:
-        print(f"Task:, {task["Name"]}, Deadline: {task["Deadline"]}, Priority: {task["Priority"]}")
+
+def suggest_tasks(tasks):
+#Please write some code
+    print("suggest tasks")
+    priority_scores = {"high": 0, "medium": 25, "low": 50}
+    score_dict = {}
+    for task in tasks:
+        priority = task["Priority"]
+        deadline = task["Deadline"]
+        day_diff = (dt.datetime.strptime(deadline, "%Y-%m-%d") - dt.datetime.now()).days
+
+        priority_score = priority_scores[priority]
+        score = day_diff + priority_score
+
+#        score_list.append({score : task})
+
+        if score in score_dict:
+#            tmp_score_list = score_dict[score]
+#            tmp_score_list.append(task)
+            score_dict[score].append(task)
+        else:
+            score_dict[score] = [task]
+    print(f"Good afternoon1 Here are some tasks you might want to work on:")
+
+    count = 0
+    for score in sorted(score_dict.keys()):
+        for task in score_dict[score]:
+            if count >= 2:
+                break
+            print("Suggest task: ", task)
+            count += 1
+        if count >= 2:
+                break
 
 
 def main():
