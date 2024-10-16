@@ -29,7 +29,7 @@ def add_task(tasks):
         except ValueError:
             print("Please enter the right format YYYY-MM-DD!")
             continue
-            
+
     tasks_dic = {}
     tasks_dic["Name"] = Name
     tasks_dic["Priority"] = Priority
@@ -44,13 +44,12 @@ def add_task(tasks):
 def remove_task(tasks):
     task_to_remove = input("Enter the task to remove:")
     for task in tasks:
-        if tasks["Name"] == task_to_remove:
+        if task["Name"] == task_to_remove:
             tasks.remove(task)
             print(task_to_remove, "has been removed from the priority list")
             return tasks
-        else:
-            print("There no", task_to_remove, "task")
-            return tasks
+    print("There no", task_to_remove, "task")
+    return tasks
 
 
 def view_tasks(tasks):
@@ -65,7 +64,36 @@ def view_tasks(tasks):
 
 def suggest_tasks(tasks):
     # Please write some code
-    print("aaa")
+    print("suggest tasks")
+    priority_scores = {"high": 0, "medium": 25, "low": 50}
+    score_dict = {}
+    for task in tasks:
+        priority = task["Priority"]
+        deadline = task["Deadline"]
+        day_diff = (datetime.datetime.strptime(deadline, "%Y-%m-%d") - datetime.datetime.now()).days
+
+        priority_score = priority_scores[priority]
+        score = day_diff + priority_score
+
+        #        score_list.append({score : task})
+
+        if score in score_dict:
+            #            tmp_score_list = score_dict[score]
+            #            tmp_score_list.append(task)
+            score_dict[score].append(task)
+        else:
+            score_dict[score] = [task]
+    print(f"Good afternoon1 Here are some tasks you might want to work on:")
+
+    count = 0
+    for score in sorted(score_dict.keys()):
+        for task in score_dict[score]:
+            if count >= 2:
+                break
+            print("Suggest task: ", task)
+            count += 1
+        if count >= 2:
+            break
 
 
 def main():
