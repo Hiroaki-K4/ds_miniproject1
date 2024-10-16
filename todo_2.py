@@ -1,4 +1,3 @@
-import re
 import datetime
 
 
@@ -63,34 +62,39 @@ def view_tasks(tasks):
 
 
 def suggest_tasks(tasks):
-    # Please write some code
-    print("suggest tasks")
     priority_scores = {"high": 0, "medium": 25, "low": 50}
     score_dict = {}
     for task in tasks:
         priority = task["Priority"]
         deadline = task["Deadline"]
-        day_diff = (datetime.datetime.strptime(deadline, "%Y-%m-%d") - datetime.datetime.now()).days
+        day_diff = (
+            datetime.datetime.strptime(deadline, "%Y-%m-%d") - datetime.datetime.now()
+        ).days
 
         priority_score = priority_scores[priority]
         score = day_diff + priority_score
 
-        #        score_list.append({score : task})
-
         if score in score_dict:
-            #            tmp_score_list = score_dict[score]
-            #            tmp_score_list.append(task)
             score_dict[score].append(task)
         else:
             score_dict[score] = [task]
-    print(f"Good afternoon1 Here are some tasks you might want to work on:")
 
+    print()
+    if len(score_dict) == 0:
+        print("There is no task")
+        return
+
+    print("Good afternoon1 Here are some tasks you might want to work on:")
     count = 0
     for score in sorted(score_dict.keys()):
         for task in score_dict[score]:
             if count >= 2:
                 break
-            print("Suggest task: ", task)
+            print(
+                "{0} - {1} - {2}".format(
+                    task["Name"], task["Priority"], task["Deadline"]
+                )
+            )
             count += 1
         if count >= 2:
             break
